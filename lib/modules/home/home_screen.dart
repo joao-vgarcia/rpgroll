@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rpgroll/get_it/get_it.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:rpgroll/modules/home/store/home_store.dart';
+import 'package:rpgroll/modules/widgets/header_item.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
@@ -21,6 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     store.changeExpanded();
   }
+
+  dummyFunction() => print('ok true');
 
   @override
   Widget build(BuildContext context) {
@@ -53,32 +56,20 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: topPadding,
                     ),
                     Column(children: [
-                      AnimatedContainer(
-                        child: Text(
-                          store.allConfigs[0],
-                          style: TextStyle(fontSize: 60, color: Colors.black),
-                        ),
-                        duration: Duration(milliseconds: 600),
-                        curve: Curves.easeInOutSine,
-                        height: store.isExpanded ? 60 : 0,
+                      HeaderItem(
+                        text: store.allConfigs[0],
+                        isExpanded: store.isExpanded,
+                        onTap: dummyFunction,
                       ),
-                      AnimatedContainer(
-                        child: Text(
-                          store.allConfigs[1],
-                          style: TextStyle(fontSize: 60, color: Colors.black),
-                        ),
-                        duration: Duration(milliseconds: 600),
-                        curve: Curves.easeInOutSine,
-                        height: store.isExpanded ? 60 : 0,
+                      HeaderItem(
+                        text: store.allConfigs[1],
+                        isExpanded: store.isExpanded,
+                        onTap: dummyFunction,
                       ),
-                      AnimatedContainer(
-                        child: Text(
-                          store.allConfigs[2],
-                          style: TextStyle(fontSize: 60, color: Colors.black),
-                        ),
-                        duration: Duration(milliseconds: 600),
-                        curve: Curves.easeInOutSine,
-                        height: store.isExpanded ? 60 : 0,
+                      HeaderItem(
+                        text: store.allConfigs[2],
+                        isExpanded: store.isExpanded,
+                        onTap: dummyFunction,
                       ),
                     ]),
                     Container(
