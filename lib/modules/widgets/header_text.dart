@@ -9,7 +9,7 @@ class HeaderText extends StatelessWidget {
     Key key,
     @required this.text,
     this.color = Colors.black,
-    this.size = 50,
+    this.size = 40,
   }) : super(key: key);
 
   @override
