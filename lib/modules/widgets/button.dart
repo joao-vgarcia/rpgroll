@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:rpgroll/modules/utils/modal.dart';
 import 'package:rpgroll/modules/widgets/header_text.dart';
 
 class Button extends StatelessWidget {
-  final Function onTap;
+  final double height;
   final String text;
-  const Button({Key key, @required this.onTap, @required this.text})
-      : super(key: key);
+  const Button({Key key, this.height, @required this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class Button extends StatelessWidget {
           ],
         ),
       ),
-      onTap: this.onTap,
+      onTap: () => showModal(context, height, text),
     );
   }
 }

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:mobx/mobx.dart';
 import 'package:rpgroll/get_it/get_it.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:rpgroll/modules/home/store/home_store.dart';
+import 'package:rpgroll/modules/utils/modal.dart';
 import 'package:rpgroll/modules/widgets/big_button.dart';
 import 'package:rpgroll/modules/widgets/button.dart';
 import 'package:rpgroll/modules/widgets/header_item.dart';
+
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:rpgroll/modules/widgets/header_text.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -26,8 +28,6 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     store.changeExpanded();
   }
-
-  dummyFunction() => print('ok true');
 
   @override
   Widget build(BuildContext context) {
@@ -68,34 +68,31 @@ class _HomeScreenState extends State<HomeScreen> {
                             HeaderItem(
                               text: store.allConfigs[0],
                               isExpanded: store.isExpanded,
-                              onTap: dummyFunction,
                             ),
                             HeaderItem(
                               text: store.allConfigs[1],
                               isExpanded: store.isExpanded,
-                              onTap: dummyFunction,
                             ),
                             HeaderItem(
                               text: store.allConfigs[2],
                               isExpanded: store.isExpanded,
-                              onTap: dummyFunction,
                             ),
                           ]),
                           AnimatedContainer(
-                              child: Text(
-                                'Configurações',
-                                style: TextStyle(
-                                    fontSize: 40, color: Colors.black),
-                              ),
-                              duration: Duration(milliseconds: 900),
-                              curve: Curves.easeInOutSine,
-                              height: !store.isExpanded ? 60 : 0,
+                            child: Text(
+                              'Configurações',
+                              style:
+                                  TextStyle(fontSize: 40, color: Colors.black),
                             ),
+                            duration: Duration(milliseconds: 300),
+                            curve: Curves.easeInOutSine,
+                            height: !store.isExpanded ? 60 : 0,
+                          ),
                           GestureDetector(
                             onTap: () {
                               store.isExpanded
                                   ? changeSize(height)
-                                  : dummyFunction();
+                                  : print('ok');
                             },
                             child: AnimatedContainer(
                               child: Text(
@@ -103,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 style: TextStyle(
                                     fontSize: 50, color: Colors.black),
                               ),
-                              duration: Duration(milliseconds: 900),
+                              duration: Duration(milliseconds: 300),
                               curve: Curves.easeInOutSine,
                               height: store.isExpanded ? 60 : 0,
                             ),
@@ -117,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         width: width,
                         height: store.heigth,
-                        duration: Duration(milliseconds: 1000),
+                        duration: Duration(milliseconds: 200),
                         curve: Curves.fastOutSlowIn,
                       ),
                     ),
@@ -133,37 +130,37 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Button(
                             text: '4',
-                            onTap: dummyFunction,
+                            height: height,
                           ),
                           Button(
                             text: '6',
-                            onTap: dummyFunction,
+                            height: height,
                           ),
                           Button(
                             text: '8',
-                            onTap: dummyFunction,
+                            height: height,
                           ),
                           Button(
                             text: '10',
-                            onTap: dummyFunction,
+                            height: height,
                           ),
                           Button(
                             text: '12',
-                            onTap: dummyFunction,
+                            height: height,
                           ),
                           Button(
                             text: '20',
-                            onTap: dummyFunction,
+                            height: height,
                           ),
                           BigButton(
-                            onTap: dummyFunction,
                             text: '100',
+                            height: height,
                             width: width * 0.9,
                           ),
                           BigButton(
-                            onTap: dummyFunction,
-                            text: 'Customize',
                             width: width * 0.9,
+                            height: height,
+                            text: 'Customize',
                           ),
                         ],
                       ),
