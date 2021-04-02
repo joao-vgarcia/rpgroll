@@ -4,10 +4,10 @@ import 'package:rpgroll/modules/widgets/atoms/header_text.dart';
 
 // ignore: must_be_immutable
 class ModalDiceItem extends StatefulWidget {
-  Function plusValue;
-  Function minusValue;
-  String value;
-  String type;
+  final Function plusValue;
+  final Function minusValue;
+  final String value;
+  final String type;
 
   ModalDiceItem({this.plusValue, this.minusValue, this.value, this.type});
   @override

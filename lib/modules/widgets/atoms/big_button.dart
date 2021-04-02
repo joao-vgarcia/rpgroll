@@ -8,7 +8,6 @@ class BigButton extends StatelessWidget {
   final double buttonHeight;
   final bool setPadding;
   final Function onTap;
-  final bool isFinal;
   const BigButton(
       {Key key,
       @required this.text,
@@ -16,7 +15,6 @@ class BigButton extends StatelessWidget {
       this.height,
       this.buttonHeight = 100,
       this.setPadding = true,
-      this.isFinal = false,
       this.onTap,
       })
       : super(key: key);

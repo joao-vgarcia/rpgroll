@@ -30,7 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     double topPadding = MediaQuery.of(context).padding.top;
-    store.setTopPadding(topPadding);
+    
+    store.setTopPadding(topPadding+ 10);
     store.setHeight(height * 0.1);
     store.setConfigValues();
 

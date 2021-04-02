@@ -61,6 +61,7 @@ abstract class HomeStoreBase with Store {
   @computed
   int get finalValue => _finalValue;
 
+
   @action
   setInvisible(int position) {
     isVisible = [false, false, false, false, false, false, false, false];
