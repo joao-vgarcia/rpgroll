@@ -36,6 +36,31 @@ mixin _$HomeStore on HomeStoreBase, Store {
       (_$isExpandedComputed ??= Computed<bool>(() => super.isExpanded,
               name: 'HomeStoreBase.isExpanded'))
           .value;
+  Computed<int> _$valueComputed;
+
+  @override
+  int get value => (_$valueComputed ??=
+          Computed<int>(() => super.value, name: 'HomeStoreBase.value'))
+      .value;
+  Computed<int> _$dicesComputed;
+
+  @override
+  int get dices => (_$dicesComputed ??=
+          Computed<int>(() => super.dices, name: 'HomeStoreBase.dices'))
+      .value;
+  Computed<int> _$bonusComputed;
+
+  @override
+  int get bonus => (_$bonusComputed ??=
+          Computed<int>(() => super.bonus, name: 'HomeStoreBase.bonus'))
+      .value;
+  Computed<int> _$finalValueComputed;
+
+  @override
+  int get finalValue =>
+      (_$finalValueComputed ??= Computed<int>(() => super.finalValue,
+              name: 'HomeStoreBase.finalValue'))
+          .value;
 
   final _$_heigthAtom = Atom(name: 'HomeStoreBase._heigth');
 
@@ -97,8 +122,120 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
+  final _$_valueAtom = Atom(name: 'HomeStoreBase._value');
+
+  @override
+  int get _value {
+    _$_valueAtom.reportRead();
+    return super._value;
+  }
+
+  @override
+  set _value(int value) {
+    _$_valueAtom.reportWrite(value, super._value, () {
+      super._value = value;
+    });
+  }
+
+  final _$_dicesAtom = Atom(name: 'HomeStoreBase._dices');
+
+  @override
+  int get _dices {
+    _$_dicesAtom.reportRead();
+    return super._dices;
+  }
+
+  @override
+  set _dices(int value) {
+    _$_dicesAtom.reportWrite(value, super._dices, () {
+      super._dices = value;
+    });
+  }
+
+  final _$_bonusAtom = Atom(name: 'HomeStoreBase._bonus');
+
+  @override
+  int get _bonus {
+    _$_bonusAtom.reportRead();
+    return super._bonus;
+  }
+
+  @override
+  set _bonus(int value) {
+    _$_bonusAtom.reportWrite(value, super._bonus, () {
+      super._bonus = value;
+    });
+  }
+
+  final _$showCalcsAtom = Atom(name: 'HomeStoreBase.showCalcs');
+
+  @override
+  String get showCalcs {
+    _$showCalcsAtom.reportRead();
+    return super.showCalcs;
+  }
+
+  @override
+  set showCalcs(String value) {
+    _$showCalcsAtom.reportWrite(value, super.showCalcs, () {
+      super.showCalcs = value;
+    });
+  }
+
+  final _$_finalValueAtom = Atom(name: 'HomeStoreBase._finalValue');
+
+  @override
+  int get _finalValue {
+    _$_finalValueAtom.reportRead();
+    return super._finalValue;
+  }
+
+  @override
+  set _finalValue(int value) {
+    _$_finalValueAtom.reportWrite(value, super._finalValue, () {
+      super._finalValue = value;
+    });
+  }
+
+  final _$isVisibleAtom = Atom(name: 'HomeStoreBase.isVisible');
+
+  @override
+  List<bool> get isVisible {
+    _$isVisibleAtom.reportRead();
+    return super.isVisible;
+  }
+
+  @override
+  set isVisible(List<bool> value) {
+    _$isVisibleAtom.reportWrite(value, super.isVisible, () {
+      super.isVisible = value;
+    });
+  }
+
   final _$HomeStoreBaseActionController =
       ActionController(name: 'HomeStoreBase');
+
+  @override
+  dynamic setInvisible(int position) {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.setInvisible');
+    try {
+      return super.setInvisible(position);
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setAllVisible() {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.setAllVisible');
+    try {
+      return super.setAllVisible();
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic setHeight(double value) {
@@ -145,12 +282,106 @@ mixin _$HomeStore on HomeStoreBase, Store {
   }
 
   @override
+  dynamic setInitialValue(int value) {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.setInitialValue');
+    try {
+      return super.setInitialValue(value);
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic plusValue() {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.plusValue');
+    try {
+      return super.plusValue();
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic minusValue() {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.minusValue');
+    try {
+      return super.minusValue();
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic plusBonus() {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.plusBonus');
+    try {
+      return super.plusBonus();
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic minusBonus() {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.minusBonus');
+    try {
+      return super.minusBonus();
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic rollAndCalculate() {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.rollAndCalculate');
+    try {
+      return super.rollAndCalculate();
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic clear() {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.clear');
+    try {
+      return super.clear();
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic clearValue() {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.clearValue');
+    try {
+      return super.clearValue();
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
+showCalcs: ${showCalcs},
+isVisible: ${isVisible},
 allConfigs: ${allConfigs},
 topPadding: ${topPadding},
 heigth: ${heigth},
-isExpanded: ${isExpanded}
+isExpanded: ${isExpanded},
+value: ${value},
+dices: ${dices},
+bonus: ${bonus},
+finalValue: ${finalValue}
     ''';
   }
 }

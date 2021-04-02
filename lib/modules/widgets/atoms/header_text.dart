@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class HeaderText extends StatelessWidget {
+class CustomText extends StatelessWidget {
   final String text;
   final Color color;
   final double size;
 
-  const HeaderText({
+  const CustomText({
     Key key,
     @required this.text,
-    this.color = Colors.black,
+    this.color,
     this.size = 40,
   }) : super(key: key);
 
@@ -18,7 +18,7 @@ class HeaderText extends StatelessWidget {
       this.text,
       style: TextStyle(
         fontSize: this.size,
-        color: this.color,
+        color: color == null? Color(0xff6D0A09) : color,
       ),
     );
   }

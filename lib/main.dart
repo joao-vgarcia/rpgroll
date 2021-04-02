@@ -4,6 +4,7 @@ import 'package:rpgroll/get_it/get_it.dart';
 import 'package:rpgroll/modules/home/home_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
