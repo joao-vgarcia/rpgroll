@@ -26,6 +26,7 @@ class Modal extends StatefulWidget {
 
 class _ModalState extends State<Modal> {
   final store = getIt<HomeStore>();
+  TextEditingController controller = TextEditingController();
   bool canShow = false;
   @override
   void initState() {
@@ -36,6 +37,15 @@ class _ModalState extends State<Modal> {
   canBuild() async {
     await Future.delayed(Duration(milliseconds: 250), () {
       setState(() {
+        if (widget.text != "Customize") {
+          if (int.parse(widget.text) != store.value) {
+            store.clear();
+            store.clearValue();
+            store.setInitialValue(int.parse(widget.text));
+          }
+        } else {
+          store.setInitialValue(0);
+        }
         canShow = true;
       });
     });
@@ -57,6 +67,66 @@ class _ModalState extends State<Modal> {
               ),
               child: Column(
                 children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      widget.text == "Customize"
+                          ? Container(
+                              margin: EdgeInsets.only(bottom: 10),
+                              alignment: Alignment.center,
+                              width: widget.width * 0.5,
+                              child: TextField(
+                                controller: store.controller,
+                                style: TextStyle(
+                                  fontSize: 30,
+                                  color: Color(0xff6D0A09),
+                                ),
+                                keyboardType: TextInputType.number,
+                                decoration: InputDecoration(
+                                    hintStyle: TextStyle(
+                                      color: Color(0xff6D0A09),
+                                    ),
+                                    focusColor: Color(0xff6D0A09),
+                                    labelStyle: TextStyle(
+                                      color: Color(0xff6D0A09),
+                                    ),
+                                    isDense: true,
+                                    hintText: 'Valor'),
+                              ),
+                            )
+                          : SizedBox(
+                              height: 0,
+                            ),
+                      widget.text == "Customize"
+                          ? GestureDetector(
+                              child: Container(
+                                alignment: Alignment.center,
+                                height: 40,
+                                width: 40,
+                                decoration: BoxDecoration(
+                                  color: Color(0xff8F8E86),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  height: 30,
+                                  width: 30,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xffC4C4C4),
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: CustomText(
+                                    size: 30,
+                                    text: "X",
+                                  ),
+                                ),
+                              ),
+                              onTap: () {
+                                store.controller.text = "";
+                              })
+                          : SizedBox(height: 0),
+                    ],
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [

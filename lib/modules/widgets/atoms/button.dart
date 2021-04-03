@@ -34,10 +34,16 @@ class _ButtonState extends State<Button> {
 
   @override
   Widget build(BuildContext context) {
-    if (int.parse(widget.text) != store.value) {
+    if (widget.text != "Customize") {
+      if (int.parse(widget.text) != store.value) {
+        store.clear();
+        store.clearValue();
+        store.setInitialValue(int.parse(widget.text));
+      }
+    } else {
       store.clear();
       store.clearValue();
-      store.setInitialValue(int.parse(widget.text));
+      store.setInitialValue(0);
     }
 
     return Observer(
@@ -103,7 +109,10 @@ class _ButtonState extends State<Button> {
                             store.setAllVisible();
                             store.setAllPop();
                           }),
-                      CustomText(text: 'D${widget.text}'),
+                      CustomText(
+                          text: widget.text == "Customize"
+                              ? '${widget.text}'
+                              : 'D${widget.text}'),
                     ],
                   ),
                 ),

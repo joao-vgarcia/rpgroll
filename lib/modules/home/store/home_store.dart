@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
 part 'home_store.g.dart';
@@ -65,6 +66,7 @@ abstract class HomeStoreBase with Store {
     true,
     true,
     true,
+    true,
   ];
 
   @computed
@@ -72,6 +74,7 @@ abstract class HomeStoreBase with Store {
 
   @observable
   List<bool> popScope = [
+    false,
     false,
     false,
     false,
@@ -91,6 +94,9 @@ abstract class HomeStoreBase with Store {
   @observable
   bool canShowDialog = true;
 
+  @observable
+  TextEditingController controller = TextEditingController();
+
   @action
   setPopScope(int position) {
     popScope[position] = true;
@@ -98,27 +104,18 @@ abstract class HomeStoreBase with Store {
 
   @action
   setAllPop() {
-    popScope = [
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-    ];
+    popScope = [false, false, false, false, false, false, false, false, false];
   }
 
   @action
   setInvisible(int position) {
-    isVisible = [false, false, false, false, false, false, false, false];
+    isVisible = [false, false, false, false, false, false, false, false, false];
     isVisible[position] = true;
   }
 
   @action
   setAllVisible() {
-    isVisible = [true, true, true, true, true, true, true, true];
+    isVisible = [true, true, true, true, true, true, true, true, true];
   }
 
   @action
@@ -164,6 +161,12 @@ abstract class HomeStoreBase with Store {
 
   @action
   rollAndCalculate() {
+    if (controller.text.isNotEmpty || controller.text == "") {
+      _value = int.parse(controller.text);
+    } else {
+      controller.text = "";
+      _value = 1;
+    }
     showCalcs = '';
     int v = 0;
     int all = 0;

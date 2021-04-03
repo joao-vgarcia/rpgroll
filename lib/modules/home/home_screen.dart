@@ -98,6 +98,17 @@ class _HomeScreenState extends State<HomeScreen> {
                             ? changeSize(height)
                             : print('nothing');
                       },
+                      onVerticalDragUpdate: (e) {
+                        if (!store.isExpanded) {
+                          if (e.delta.direction > 0) {
+                            changeSize(height);
+                          }
+                        } else {
+                          if (e.delta.direction < 0) {
+                            changeSize(height);
+                          }
+                        }
+                      },
                       child: Observer(
                         builder: (_) => AnimatedContainer(
                           child: Column(children: [
@@ -120,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ]),
                             AnimatedContainer(
                               child: CustomText(text: 'Configurações'),
-                              duration: Duration(milliseconds: 300),
+                              duration: Duration(milliseconds: 400),
                               curve: Curves.easeInOutSine,
                               height: !store.isExpanded ? 60 : 0,
                             ),
@@ -210,12 +221,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                       isBig: true,
                                       position: 6,
                                     )),
-                            // Button(
-                            //   text: 'Customize',
-                            //   height: height,
-                            //   width: width,
-                            //   isBig: true,
-                            // ),
+                             Observer(
+                                builder: (_) => Button(
+                                      text: 'Customize',
+                                      height: height,
+                                      width: width,
+                                      isBig: true,
+                                      position: 7,
+                                    )),
                           ],
                         ),
                       ),

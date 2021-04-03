@@ -272,6 +272,21 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
+  final _$controllerAtom = Atom(name: 'HomeStoreBase.controller');
+
+  @override
+  TextEditingController get controller {
+    _$controllerAtom.reportRead();
+    return super.controller;
+  }
+
+  @override
+  set controller(TextEditingController value) {
+    _$controllerAtom.reportWrite(value, super.controller, () {
+      super.controller = value;
+    });
+  }
+
   final _$HomeStoreBaseActionController =
       ActionController(name: 'HomeStoreBase');
 
@@ -460,6 +475,7 @@ popScope: ${popScope},
 h: ${h},
 w: ${w},
 canShowDialog: ${canShowDialog},
+controller: ${controller},
 allConfigs: ${allConfigs},
 topPadding: ${topPadding},
 heigth: ${heigth},
