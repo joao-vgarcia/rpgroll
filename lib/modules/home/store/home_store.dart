@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'home_store.g.dart';
 
@@ -160,8 +161,42 @@ abstract class HomeStoreBase with Store {
   minusBonus() => _bonus--;
 
   @action
-  rollAndCalculate() {
-    if (controller.text.isNotEmpty || controller.text == "") {
+  rollAndCalculate() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> historico = prefs.getStringList('historico');
+    if (historico == null) historico = [];
+    showCalcs = '';
+    int v = 0;
+    int all = 0;
+    var random = new Random();
+    for (int i = 1; i <= _dices; i++) {
+      v = random.nextInt(_value) + 1;
+      all += v;
+      if (showCalcs.isEmpty) {
+        showCalcs = '${v.toString()}';
+      } else {
+        showCalcs = '$showCalcs, ${v.toString()}';
+      }
+    }
+    all += _bonus;
+    _finalValue = all;
+
+    if (_bonus >= 1) {
+      showCalcs = '$showCalcs, + $_bonus';
+    } else if (_bonus < 0) {
+      showCalcs = '$showCalcs, $_bonus';
+    }
+    historico.insert(0, showCalcs);
+    await prefs.setStringList("historico", historico);
+    clear();
+  }
+
+  @action
+  rollAndCalculateCustom() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> historico = prefs.getStringList('historico');
+    if (historico == null) historico = [];
+    if (controller.text.isNotEmpty || controller.text != "") {
       _value = int.parse(controller.text);
     } else {
       controller.text = "";
@@ -188,6 +223,9 @@ abstract class HomeStoreBase with Store {
     } else if (_bonus < 0) {
       showCalcs = '$showCalcs, $_bonus';
     }
+
+    historico.insert(0, showCalcs);
+    await prefs.setStringList("historico", historico);
 
     clear();
   }

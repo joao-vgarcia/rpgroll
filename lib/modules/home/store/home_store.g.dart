@@ -287,6 +287,23 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
+  final _$rollAndCalculateAsyncAction =
+      AsyncAction('HomeStoreBase.rollAndCalculate');
+
+  @override
+  Future rollAndCalculate() {
+    return _$rollAndCalculateAsyncAction.run(() => super.rollAndCalculate());
+  }
+
+  final _$rollAndCalculateCustomAsyncAction =
+      AsyncAction('HomeStoreBase.rollAndCalculateCustom');
+
+  @override
+  Future rollAndCalculateCustom() {
+    return _$rollAndCalculateCustomAsyncAction
+        .run(() => super.rollAndCalculateCustom());
+  }
+
   final _$HomeStoreBaseActionController =
       ActionController(name: 'HomeStoreBase');
 
@@ -428,17 +445,6 @@ mixin _$HomeStore on HomeStoreBase, Store {
         name: 'HomeStoreBase.minusBonus');
     try {
       return super.minusBonus();
-    } finally {
-      _$HomeStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic rollAndCalculate() {
-    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
-        name: 'HomeStoreBase.rollAndCalculate');
-    try {
-      return super.rollAndCalculate();
     } finally {
       _$HomeStoreBaseActionController.endAction(_$actionInfo);
     }

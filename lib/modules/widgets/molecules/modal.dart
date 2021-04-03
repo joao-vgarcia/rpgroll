@@ -191,12 +191,17 @@ class _ModalState extends State<Modal> {
                     ),
                   ),
                   BigButton(
-                    text: "Jogar",
-                    width: widget.width * 0.8,
-                    buttonHeight: 60,
-                    setPadding: false,
-                    onTap: store.rollAndCalculate,
-                  )
+                      text: "Jogar",
+                      width: widget.width * 0.8,
+                      buttonHeight: 60,
+                      setPadding: false,
+                      onTap: () async {
+                        if (widget.text == "Customize") {
+                          await store.rollAndCalculateCustom();
+                        } else {
+                          await store.rollAndCalculate();
+                        }
+                      })
                 ],
               ),
             ),

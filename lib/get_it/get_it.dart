@@ -3,6 +3,7 @@ import 'package:rpgroll/modules/home/store/home_store.dart';
 
 final getIt = GetIt.instance;
 
-void setUpLocator() {
+void setUpLocator() async {
+  
   getIt.registerLazySingleton<HomeStore>(() => HomeStore());
 }
