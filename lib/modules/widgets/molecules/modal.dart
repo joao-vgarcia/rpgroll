@@ -34,7 +34,7 @@ class _ModalState extends State<Modal> {
   }
 
   canBuild() async {
-    await Future.delayed(Duration(milliseconds: 500), () {
+    await Future.delayed(Duration(milliseconds: 250), () {
       setState(() {
         canShow = true;
       });
@@ -82,9 +82,17 @@ class _ModalState extends State<Modal> {
                     builder: (_) => Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          alignment: Alignment.center,
-                          child: CustomText(text: store.showCalcs, size: 20),
+                        Flexible(
+                          flex: 1,
+                          fit: FlexFit.loose,
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 5),
+                            child: Container(
+                              alignment: Alignment.center,
+                              child:
+                                  CustomText(text: store.showCalcs, size: 20),
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -95,8 +103,8 @@ class _ModalState extends State<Modal> {
                       children: [
                         Container(
                           alignment: Alignment.center,
-                          height: 200,
-                          width: 200,
+                          height: 150,
+                          width: 150,
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage('assets/images/result.png'),

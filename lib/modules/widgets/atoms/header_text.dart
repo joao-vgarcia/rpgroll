@@ -18,7 +18,7 @@ class CustomText extends StatelessWidget {
       this.text,
       style: TextStyle(
         fontSize: this.size,
-        color: color == null? Color(0xff6D0A09) : color,
+        color: color == null ? Color(0xff6D0A09) : color,
       ),
     );
   }

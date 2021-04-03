@@ -56,11 +56,59 @@ abstract class HomeStoreBase with Store {
   int _finalValue = 0;
 
   @observable
-  List<bool> isVisible = [true, true, true, true, true, true, true, true];
+  List<bool> isVisible = [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+  ];
 
   @computed
   int get finalValue => _finalValue;
 
+  @observable
+  List<bool> popScope = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ];
+
+  @observable
+  double h = 100;
+
+  @observable
+  double w = 100;
+
+  @observable
+  bool canShowDialog = true;
+
+  @action
+  setPopScope(int position) {
+    popScope[position] = true;
+  }
+
+  @action
+  setAllPop() {
+    popScope = [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+    ];
+  }
 
   @action
   setInvisible(int position) {
@@ -69,7 +117,7 @@ abstract class HomeStoreBase with Store {
   }
 
   @action
-  setAllVisible(){
+  setAllVisible() {
     isVisible = [true, true, true, true, true, true, true, true];
   }
 

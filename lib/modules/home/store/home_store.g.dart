@@ -212,8 +212,90 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
+  final _$popScopeAtom = Atom(name: 'HomeStoreBase.popScope');
+
+  @override
+  List<bool> get popScope {
+    _$popScopeAtom.reportRead();
+    return super.popScope;
+  }
+
+  @override
+  set popScope(List<bool> value) {
+    _$popScopeAtom.reportWrite(value, super.popScope, () {
+      super.popScope = value;
+    });
+  }
+
+  final _$hAtom = Atom(name: 'HomeStoreBase.h');
+
+  @override
+  double get h {
+    _$hAtom.reportRead();
+    return super.h;
+  }
+
+  @override
+  set h(double value) {
+    _$hAtom.reportWrite(value, super.h, () {
+      super.h = value;
+    });
+  }
+
+  final _$wAtom = Atom(name: 'HomeStoreBase.w');
+
+  @override
+  double get w {
+    _$wAtom.reportRead();
+    return super.w;
+  }
+
+  @override
+  set w(double value) {
+    _$wAtom.reportWrite(value, super.w, () {
+      super.w = value;
+    });
+  }
+
+  final _$canShowDialogAtom = Atom(name: 'HomeStoreBase.canShowDialog');
+
+  @override
+  bool get canShowDialog {
+    _$canShowDialogAtom.reportRead();
+    return super.canShowDialog;
+  }
+
+  @override
+  set canShowDialog(bool value) {
+    _$canShowDialogAtom.reportWrite(value, super.canShowDialog, () {
+      super.canShowDialog = value;
+    });
+  }
+
   final _$HomeStoreBaseActionController =
       ActionController(name: 'HomeStoreBase');
+
+  @override
+  dynamic setPopScope(int position) {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.setPopScope');
+    try {
+      return super.setPopScope(position);
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setAllPop() {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.setAllPop');
+    try {
+      return super.setAllPop();
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic setInvisible(int position) {
@@ -374,6 +456,10 @@ mixin _$HomeStore on HomeStoreBase, Store {
     return '''
 showCalcs: ${showCalcs},
 isVisible: ${isVisible},
+popScope: ${popScope},
+h: ${h},
+w: ${w},
+canShowDialog: ${canShowDialog},
 allConfigs: ${allConfigs},
 topPadding: ${topPadding},
 heigth: ${heigth},

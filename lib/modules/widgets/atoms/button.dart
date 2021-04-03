@@ -42,41 +42,70 @@ class _ButtonState extends State<Button> {
 
     return Observer(
       builder: (_) => AnimatedContainer(
-        duration: Duration(milliseconds: 600),
+        duration: Duration(milliseconds: 200),
         curve: Curves.linear,
-        height: store.isVisible[widget.position] ? h : 0,
+        height: store.isVisible[widget.position] ? store.h : 0,
         width: store.isVisible[widget.position]
-            ? (widget.isBig ? widget.width * 0.9 : w)
+            ? (widget.isBig ? widget.width * 0.9 : store.w)
             : 0,
-        child: !isClicked
+        child: !store.popScope[widget.position]
             ? GestureDetector(
                 onTap: () {
-                  setState(() {
-                    h = widget.height * 0.68;
-                    w = widget.width;
-                    isClicked = !isClicked;
-                    store.setInvisible(widget.position);
-                  });
+                  store.h = widget.height * 0.68;
+                  store.w = widget.width;
+                  store.canShowDialog = false;
+                  store.setInvisible(widget.position);
+                  store.setPopScope(widget.position);
                 },
                 child: ButtonClosed(
                   text: widget.text,
                 ))
             : Column(children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    GestureDetector(
-                        child: CustomText(text: 'X'),
-                        onTap: () {
-                          setState(() {
-                            h = 100;
-                            w = 100;
-                            isClicked = !isClicked;
-                          });
-                          store.setAllVisible();
-                        }),
-                    CustomText(text: 'D${widget.text}'),
-                  ],
+                Container(
+                  alignment: Alignment.bottomCenter,
+                  height: 45,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/modal.png'),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      GestureDetector(
+                          child: Container(
+                            alignment: Alignment.center,
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                              color: Color(0xff8F8E86),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Container(
+                              alignment: Alignment.center,
+                              height: 30,
+                              width: 30,
+                              decoration: BoxDecoration(
+                                color: Color(0xffC4C4C4),
+                                shape: BoxShape.circle,
+                              ),
+                              child: CustomText(
+                                size: 30,
+                                text: "X",
+                              ),
+                            ),
+                          ),
+                          onTap: () {
+                            store.h = 100;
+                            store.w = 100;
+                            store.canShowDialog = true;
+                            store.setAllVisible();
+                            store.setAllPop();
+                          }),
+                      CustomText(text: 'D${widget.text}'),
+                    ],
+                  ),
                 ),
                 Modal(
                   height: widget.height,
